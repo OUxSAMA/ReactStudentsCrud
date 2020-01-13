@@ -29,7 +29,11 @@ class StudentComponent extends Component {
         }
         StudentService.getStudent(this.state.id)
             .then(response => this.setState({
-                name: response.data.name
+                name: response.data.name,
+                cne: response.data.cne,
+                moyenne: response.data.moyenne,
+                resultat: response.data.resultat
+
             }))
     }
     validate(values) {
@@ -40,7 +44,7 @@ class StudentComponent extends Component {
         return errors
     }
     onSubmit(values) {
-        let username = INSTRUCTOR
+        
         let student = {
             id: this.state.id,
             name: values.name,
@@ -64,7 +68,7 @@ class StudentComponent extends Component {
 
 
     render() {
-        let { name, id } = this.state
+        let { name, id,cne,moyenne,resultat } = this.state
         return (
             <div>
      
@@ -83,7 +87,7 @@ class StudentComponent extends Component {
                                 <Form>
                                     <ErrorMessage name="description" component="div"
                                         className="alert alert-warning" />
-                                   
+
 
                                     <fieldset className="form-group">
                                         <label>name</label>
@@ -106,7 +110,9 @@ class StudentComponent extends Component {
                                     </fieldset>
 
                                     <button className="btn btn-success" type="submit">Save</button>
-                                    <button className="btn btn-primary" onClick={this.back}>Back</button>
+
+                                   
+                                   
 
                                     
                                 </Form>
@@ -119,6 +125,7 @@ class StudentComponent extends Component {
                 </div>
 
                 <div className="row">
+                <button className="btn btn-primary" onClick={this.back}>Back</button>
    
 </div>
             </div>
